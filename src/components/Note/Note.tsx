@@ -2,6 +2,7 @@ import React from "react";
 import s from "../NoteList/NoteList.module.scss";
 import SuperEditableSpan from "../../common/editSpan/SuperEditableSpan";
 import {TagType} from "../../redux/note-reducer";
+import SuperButton from "../../common/castomButton/SuperButton";
 
 type NoteType = {
     id: string
@@ -26,7 +27,7 @@ export const Note: React.FC<NoteType> = (
                 <div className={s.editSpan}>
                     <SuperEditableSpan tag={tag} id={id} value={title} onChangeText={changeNoteCallback}/>
                 </div>
-                <button className={s.btnRemove} onClick={() => removeNoteCallback(id)}>x</button>
+                <SuperButton onClick={() => removeNoteCallback(id)}>delete</SuperButton>
             </div>
             <div className={s.tags}>
                 {

@@ -54,8 +54,10 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
         setEditMode(true)
 
         onDoubleClick && onDoubleClick(e)
+
     }
     const onChangeTextHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        let currentValue = e.currentTarget.value
         setTitle(e.currentTarget.value)
     }
 
