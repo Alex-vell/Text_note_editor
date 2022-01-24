@@ -1,0 +1,97 @@
+$textFontFamily: 'Hind Siliguri', sans-serif;
+$textColor: #363636;
+
+.noteList {
+  margin: 0 auto;
+  width: 80%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  //background-color: white;
+
+  .fieldBlock {
+    border: 2px solid darkorchid;
+    border-radius: 10px;
+    width: 450px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px;
+
+    .filterButtons {
+      display: flex;
+    }
+
+    /*.createField {
+
+    }
+
+    .searchField {
+
+    }*/
+  }
+
+  .noteBlock {
+    width: 60%;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    border: 2px solid darkorchid;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+
+    .note {
+      width: 800px;
+      min-height: 140px;
+      border: 2px solid darkorchid;
+      border-radius: 10px;
+      margin: 20px 0;
+
+      .fieldContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin: 20px;
+
+
+        .editSpan {
+          width: 600px;
+          overflow: hidden;
+          font-family: $textFontFamily;
+          color: $textColor;
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+
+        .inputTags {
+          display: flex;
+        }
+      }
+
+      .tags {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 10px;
+
+        .tag {
+          margin-right: 10px;
+          font-family: $textFontFamily;
+          color: $textColor;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
