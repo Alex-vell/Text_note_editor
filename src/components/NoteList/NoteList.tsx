@@ -1,32 +1,20 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {
-    addNoteAC,
-    addTagsAC,
-    changeNoteAC,
-    fetchNoteTC,
-    NoteType,
-    pushNoteTC,
-    removeNoteAC,
-    searchNoteAC, TagType
-} from "../../redux/note-reducer";
-import {AppRootType} from "../../redux/store";
 import s from './NoteList.module.scss'
 import SuperInputText from "../../common/castomInput/SuperInputText";
 import SuperButton from "../../common/castomButton/SuperButton";
 import {Note} from "../Note/Note";
+import {observer} from "mobx-react-lite";
+import note from '../../store/note'
+import {TagType} from "../../store/types";
 
-export const NoteList = () => {
-    const notes = useSelector<AppRootType, Array<NoteType>>(state => state.note.notes)
-    const currentNotes = useSelector<AppRootType, Array<NoteType>>(state => state.note.currentNotes)
-    const dispatch = useDispatch()
+export const NoteList = observer(() => {
     const [title, setTitle] = useState<string>('')
     const [filter, setFilter] = useState<boolean>(false)
     const [filterTitle, setFilterTitle] = useState<string>('')
 
     useEffect(() => {
-        dispatch(fetchNoteTC())
-    }, [dispatch])
+        note.fetchNote()
+    }, [])
 
 
     const onChangeFilterHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -34,8 +22,7 @@ export const NoteList = () => {
     }
 
     const filterNotes = () => {
-        dispatch(searchNoteAC(filterTitle))
-        dispatch(pushNoteTC())
+        note.searchNote(filterTitle)
         setFilter(true)
     }
 
@@ -48,14 +35,13 @@ export const NoteList = () => {
     }
 
     const addNote = () => {
-        dispatch(addNoteAC(title))
-        dispatch(pushNoteTC())
+        note.addNote(title)
+        note.pushNote()
         setTitle('')
     }
 
     const removeNote = (id: string) => {
-        dispatch(removeNoteAC(id))
-        dispatch(pushNoteTC())
+        note.removeNote(id)
     }
 
     const changeNoteCallback = (id: string, title: string) => {
@@ -69,9 +55,9 @@ export const NoteList = () => {
             noteId: id
         }
 
-        dispatch(addTagsAC(hashTag, id, tag))
-        dispatch(changeNoteAC(id, title))
-        dispatch(pushNoteTC())
+        note.addTags(hashTag, id, tag)
+        note.changeNote(id, title)
+        note.pushNote()
     }
 
     return (
@@ -96,7 +82,7 @@ export const NoteList = () => {
 
             <div className={s.noteBlock}>
                 {
-                    !filter && notes.map(el => {
+                    !filter && note.noteState.notes.map(el => {
                             return <Note key={el.id}
                                          id={el.id}
                                          title={el.title}
@@ -107,7 +93,7 @@ export const NoteList = () => {
                     )
                 }
                 {
-                    filter && currentNotes.map(el => {
+                    filter && note.noteState.currentNotes.map(el => {
                             return <Note key={el.id}
                                          id={el.id}
                                          title={el.title}
@@ -120,4 +106,4 @@ export const NoteList = () => {
             </div>
         </div>
     );
-}
+})

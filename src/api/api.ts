@@ -1,5 +1,5 @@
-import axios, {AxiosResponse} from "axios";
-import {NoteType} from "../redux/note-reducer";
+import axios from "axios";
+import {NoteType} from "../store/types";
 
 const instance = axios.create({
     baseURL: 'http://localhost:5000/api/',

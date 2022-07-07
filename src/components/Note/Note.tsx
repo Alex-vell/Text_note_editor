@@ -1,8 +1,8 @@
 import React from "react";
 import s from "../NoteList/NoteList.module.scss";
 import SuperEditableSpan from "../../common/editSpan/SuperEditableSpan";
-import {TagType} from "../../redux/note-reducer";
 import SuperButton from "../../common/castomButton/SuperButton";
+import {TagType} from "../../store/types";
 
 type NoteType = {
     id: string

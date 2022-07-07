@@ -1,7 +1,7 @@
 import React, {ChangeEvent, DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, useState} from 'react'
 import styles from './SuperEditableSpan.module.css'
 import SuperInputText from "../castomInput/SuperInputText";
-import {TagType} from "../../redux/note-reducer";
+import {TagType} from "../../store/types";
 
 
 // default input prop type
